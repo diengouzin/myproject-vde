@@ -53,7 +53,7 @@ public class TestsTest {
       // 6 | executeScript | return ${urls}[${r}] | affiche | 
       vars.put("affiche", js.executeScript("return arguments[0][arguments[1]]", vars.get("urls"),vars.get("r")));
       // 7 | open | ${affiche} |  | 
-      driver.get("http://127.0.0.1:5500/exemple.htmlvars.get("affiche").toString()");
+      driver.get("http://127.0.0.1:5500/exemple.htmlvars.get('affiche').toString()");
       // 8 | executeScript | return parseInt(${r})+1 | r | 
       vars.put("r", js.executeScript("return parseInt(arguments[0])+1", vars.get("r")));
       // 10 | storeXpathCount | xpath=//html/body/table/tbody/tr | rows | 
@@ -61,15 +61,15 @@ public class TestsTest {
       // 11 | store | 0 | i | 
       vars.put("i", "0");
       // 12 | while | ${i} <${rows} |  | 
-      while ((Boolean) js.executeScript("return (arguments[0] <arguments[1])", vars.get("i"),vars.get("rows"))) {
+      while ((Boolean) js.executeScript("return (arguments[0] <arguments[1])", vars.get('i'),vars.get("rows"))) {
         // 14 | executeScript | return parseInt(${i})+1 | i | 
         vars.put("i", js.executeScript("return parseInt(arguments[0])+1", vars.get("i")));
         // 15 | echo | ${i} |  | 
         System.out.println(vars.get("i").toString());
         // 16 | storeText | xpath= //tr[${i}]/td[3] | description | 
-        vars.put("description", driver.findElement(By.xpath(" //tr[vars.get("i").toString()]/td[3]")).getText());
+        vars.put("description", driver.findElement(By.xpath(" //tr[vars.get('i').toString()]/td[3]")).getText());
         // 17 | storeXpathCount | xpath= //tr[${i}]/td[5] | d | 
-        vars.put("d", driver.findElements(By.xpath(" //tr[vars.get("i").toString()]/td[5]")).size());
+        vars.put("d", driver.findElements(By.xpath(" //tr[vars.get('i').toString()]/td[5]")).size());
         // 18 | if | ${d} > 0 |  | 
         if ((Boolean) js.executeScript("return (arguments[0] > 0)", vars.get("d"))) {
           // 19 | storeText | xpath= //tr[${i}]/td[5] | result | 
