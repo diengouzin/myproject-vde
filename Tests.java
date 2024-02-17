@@ -40,12 +40,12 @@ public class TestsTest {
   public void tests() {
     // Test name: Tests
     // Step # | name | target | value | comment
-    // 1 | executeScript | return [ "http://127.0.0.1:5500/table.html ","https://chat.openai.com/c/fa4f5e0b-a07b-40ec-a1de-5d38930016ee ","https://www.google.fr/ ", " http://127.0.0.1:5500/exemple.html"] | urls | 
+    // 1 | executeScript | return ["http://127.0.0.1:5500/table.html","https://chat.openai.com/c/fa4f5e0b-a07b-40ec-a1de-5d38930016ee ","https://www.google.fr/ ", " http://127.0.0.1:5500/exemple.html"] | urls | 
     vars.put("urls", js.executeScript("return [ \"http://127.0.0.1:5500/table.html \",\"https://chat.openai.com/c/fa4f5e0b-a07b-40ec-a1de-5d38930016ee \",\"https://www.google.fr/ \", \" http://127.0.0.1:5500/exemple.html\"]"));
     // 2 | executeScript | return ${urls}.length | count | 
     vars.put("count", js.executeScript("return arguments[0].length", vars.get("urls")));
     // 3 | store | ${count} | count | 
-    vars.put("count", "vars.get("count").toString()");
+    vars.put("count", "vars.get('count').toString()");
     // 4 | store | 0 | r | 
     vars.put("r", "0");
     // 5 | while | ${r} <${count} |  | 
@@ -73,9 +73,9 @@ public class TestsTest {
         // 18 | if | ${d} > 0 |  | 
         if ((Boolean) js.executeScript("return (arguments[0] > 0)", vars.get("d"))) {
           // 19 | storeText | xpath= //tr[${i}]/td[5] | result | 
-          vars.put("result", driver.findElement(By.xpath(" //tr[vars.get("i").toString()]/td[5]")).getText());
+          vars.put("result", driver.findElement(By.xpath(" //tr[vars.get('i').toString()]/td[5]")).getText());
           // 20 | verifyText | xpath= //tr[${i}]/td[5] | OK | 
-          assertThat(driver.findElement(By.xpath(" //tr[vars.get("i").toString()]/td[5]")).getText(), is("OK"));
+          assertThat(driver.findElement(By.xpath(" //tr[vars.get('i').toString()]/td[5]")).getText(), is("OK"));
           // 21 | else |  |  | 
         } else {
           // 22 | end |  |  | 
